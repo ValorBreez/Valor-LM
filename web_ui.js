@@ -869,15 +869,21 @@ app.post('/feedback', async (req, res) => {
     
     // Save feedback to Supabase if available
     try {
-      await supabase
+      const { error } = await supabase
         .from('feedback')
         .insert({
           feedback_type: feedback,
           timestamp: timestamp,
           user_id: 'web-ui-user'
         });
+      
+      if (error) {
+        console.log('Could not save feedback to database:', error.message);
+        // Continue anyway - feedback is optional
+      }
     } catch (error) {
       console.log('Could not save feedback to database:', error.message);
+      // Continue anyway - feedback is optional
     }
     
     res.json({ success: true });

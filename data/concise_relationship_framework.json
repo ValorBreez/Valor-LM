@@ -1,0 +1,133 @@
+{
+  "framework_metadata": {
+    "title": "Concise Relationship Management Framework",
+    "version": "2.0",
+    "description": "Streamlined framework for relationship analysis and tactics"
+  },
+  "relationship_types": {
+    "dominant": {
+      "description": "High Desire, High Power, High Rapport",
+      "approach": "Lead with relationship strength, use power judiciously",
+      "priorities": ["Lead with shared history", "Emphasize mutual benefit", "Use rapport over power"],
+      "warnings": ["Over-relying on power", "Taking relationship for granted"]
+    },
+    "subjugative": {
+      "description": "High Desire, High Power, Low Rapport", 
+      "approach": "Direct engagement, build rapport during process",
+      "priorities": ["Lead with value", "Use power as backup", "Build rapport"],
+      "warnings": ["Over-reliance on power", "Underestimating resistance"]
+    },
+    "collaborative": {
+      "description": "High Desire, Even Power, High Rapport",
+      "approach": "Partnership approach, leverage rapport for win-win",
+      "priorities": ["Emphasize partnership", "Use rapport for communication", "Creative solutions"],
+      "warnings": ["Taking advantage", "Assuming agreement"]
+    },
+    "compromising": {
+      "description": "High Desire, Even Power, Low Rapport",
+      "approach": "Negotiation with value exchange, acknowledge past issues",
+      "priorities": ["Emphasize mutual gains", "Build rapport first", "Multiple concessions"],
+      "warnings": ["One-sided demands", "Rushing to close"]
+    },
+    "appealing": {
+      "description": "High Desire, Low Power, High Rapport",
+      "approach": "Leverage rapport to compensate for power disadvantage",
+      "priorities": ["Lead with relationship", "Create opportunities", "Increase value"],
+      "warnings": ["Over-relying on rapport", "Taking relationship for granted"]
+    },
+    "supplicating": {
+      "description": "High Desire, Low Power, Low Rapport",
+      "approach": "Build value and rapport, indirect approaches",
+      "priorities": ["Build rapport and value", "Indirect influence", "Increase value"],
+      "warnings": ["Direct demands", "Appearing desperate"]
+    },
+    "protective": {
+      "description": "Low Desire, High Power, High Rapport",
+      "approach": "Gentle deflection using rapport, maintain boundaries",
+      "priorities": ["Use rapport to soften", "Gentle boundaries", "Offer alternatives"],
+      "warnings": ["Damaging relationship", "Too harsh rejection"]
+    },
+    "dismissive": {
+      "description": "Low Desire, High Power, Low Rapport",
+      "approach": "Minimal engagement, clear boundaries, use power",
+      "priorities": ["Set clear boundaries", "Use power to deflect", "Maintain distance"],
+      "warnings": ["Getting drawn in", "Failing to use power"]
+    },
+    "resistant": {
+      "description": "Low Desire, Even Power, High Rapport",
+      "approach": "Gentle resistance, preserve positive connection",
+      "priorities": ["Use rapport to soften", "Resist gently", "Offer alternatives"],
+      "warnings": ["Damaging relationship", "Too harsh rejection"]
+    },
+    "avoidant": {
+      "description": "Low Desire, Even Power, Low Rapport",
+      "approach": "Defensive engagement, clear resistance",
+      "priorities": ["Resist firmly", "Defensive tactics", "Maintain neutral"],
+      "warnings": ["Unnecessary concessions", "Failing to resist"]
+    },
+    "defensive": {
+      "description": "Low Desire, Low Power, High Rapport",
+      "approach": "Gentle resistance, preserve relationship",
+      "priorities": ["Use rapport to soften", "Indirect resistance", "Offer alternatives"],
+      "warnings": ["Damaging relationship", "Too harsh rejection"]
+    },
+    "accommodating": {
+      "description": "Low Desire, Low Power, Low Rapport",
+      "approach": "Minimal engagement, strategic resistance, damage control",
+      "priorities": ["Indirect resistance", "Minimize engagement", "Build power"],
+      "warnings": ["Unnecessary concessions", "Failing to resist"]
+    }
+  },
+  "analysis_components": {
+    "desire": {
+      "high": "You want something from them",
+      "low": "You want nothing from them"
+    },
+    "power": {
+      "high": "You have significant leverage over them",
+      "even": "You have equal standing with them", 
+      "low": "You have little leverage over them"
+    },
+    "rapport": {
+      "high": "You have strong positive history together",
+      "low": "You have negative or minimal history together"
+    }
+  },
+  "tactics": {
+    "exploitation": {
+      "intellectual": {
+        "dim": "Complicate arguments, use technical jargon",
+        "naive": "Introduce unknown negative consequences",
+        "uninformed": "Make claims they can't refute"
+      },
+      "emotional": {
+        "empathetic": "Make them feel bad for not helping",
+        "insecure": "Suggest inadequacy",
+        "egotistic": "Suggest your position glorifies them"
+      }
+    },
+    "persuasion": {
+      "true_offensive": "Talk them into seeing your request as beneficial",
+      "true_defensive": "Talk them into seeing their request as costly",
+      "false": "Only when character flaws present, gives them power"
+    },
+    "manipulation": {
+      "offensive": "Use fear to make your request desirable",
+      "defensive": "Use fear to make their request undesirable"
+    }
+  },
+  "engagement_structures": {
+    "offensive": {
+      "phases": ["Greeting/Orientation", "Pitch/Resistance/Counter", "Close/Soothing"],
+      "tactics": ["Lead with value", "Listen completely", "Employ counter-tactics"]
+    },
+    "defensive": {
+      "phases": ["Reject Greeting", "Receive/Deliver Resistance", "Obfuscate Close"],
+      "tactics": ["Don't allow positive atmosphere", "Resist firmly", "End prematurely if needed"]
+    },
+    "competitive": {
+      "phases": ["Greeting/Orientation", "Pitch/Counter-Offer/Counter", "Close/Soothing"],
+      "tactics": ["Emphasize mutual gains", "Listen to counter-offers", "Reach agreement"]
+    }
+  }
+} 

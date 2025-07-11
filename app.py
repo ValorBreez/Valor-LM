@@ -5,6 +5,7 @@ import openai
 from supabase import create_client, Client
 import uuid
 from datetime import datetime
+import re
 
 # Load environment variables
 load_dotenv()
@@ -53,6 +54,44 @@ def search_similar_chunks(question_embedding, limit=5):
         result = supabase.table('framework_chunks').select('*').execute()
         return result.data[:limit]
 
+def extract_relationship_facts(user_message, conversation_history=None):
+    """Use OpenAI to extract or update relationship subject and facts from a user message."""
+    system_prompt = (
+        "You are an assistant that extracts relationship subjects and facts from user messages. "
+        "For each message, return a JSON object with: "
+        "'subject' (the person/role the user is talking about, e.g. 'boss', 'neighbor'), "
+        "and any facts you can infer: 'power_respect', 'power_aid', 'power_harm', 'rapport', 'notes'. "
+        "Use values like 'high', 'even', 'low' for power fields and 'high', 'neutral', 'low' for rapport. "
+        "If a fact is not present, omit it. Be conversationally aware: infer facts from context, not just direct statements. "
+        "If the subject is not clear, return null for subject."
+    )
+    messages = [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_message}
+    ]
+    if conversation_history:
+        for msg in conversation_history[-3:]:
+            messages.insert(1, {"role": "user", "content": msg['user']})
+            messages.insert(2, {"role": "assistant", "content": msg['assistant']})
+    try:
+        response = openai.chat.completions.create(
+            model="gpt-4-turbo-preview",
+            messages=messages,
+            max_tokens=300,
+            temperature=0.2
+        )
+        import json
+        text = response.choices[0].message.content or ""
+        # Try to extract JSON from the response
+        match = re.search(r'\{.*\}', text, re.DOTALL)
+        if match:
+            facts = json.loads(match.group(0))
+            return facts
+        return None
+    except Exception as e:
+        print(f"Error extracting relationship facts: {e}")
+        return None
+
 def generate_response(question, relevant_chunks, conversation_history=None):
     """Generate a response using GPT-4-turbo with the relevant framework chunks and conversation history"""
     
@@ -71,55 +110,62 @@ def generate_response(question, relevant_chunks, conversation_history=None):
         ])
     
     # Create the prompt
-    system_prompt = f"""You are a strategic relationship advisor who systematically analyzes relationships. You determine desire, power (by respect, aid, and harm), and rapport step by step, then provide position analysis.
+    system_prompt = f"""
+You are a relationship strategist. Your job is to ask clarifying questions to understand the situation before giving advice.
 
-ANALYTICAL SEQUENCE:
-1. **DETERMINE DESIRE** - Who wants what from whom? High/Low desire for engagement
-2. **ASSESS POWER** - Ask about respect, aid, and harm (not just 'leverage')
-    - Respect: How much do you respect them, and how much do they respect you?
-    - Aid: In what ways can you help them, and in what ways can they help you?
-    - Harm: In what ways could you harm them, and in what ways could they harm you?
-3. **EVALUATE RAPPORT** - What's the relationship history and comfort level?
-4. **ANALYZE POSITION** - Based on the three components, determine the relationship type
-5. **PROVIDE STRATEGY** - Give specific tactical advice for that position
+ANALYSIS PROCESS:
+1. FIRST: Ask 1-2 specific questions to understand the relationship dynamics
+2. ONLY AFTER getting answers: Provide position analysis and tactics
 
-RESPONSE STYLE:
-- **Be smart about information already provided** - If the user already stated what they want, don't ask again
-- **Follow the sequence exactly** - Desire → Respect → Aid → Harm → Rapport → Analysis
-- **Ask one focused question per response** - Don't jump ahead
-- **Build on previous answers** - Reference what they've already shared
-- **Give clear analysis** - "Based on [desire/power/rapport], you're in a [position] relationship"
-- **Provide specific tactics** - Concrete steps for that position
+KEY QUESTIONS TO ASK:
+- What do you want from this person? (Desire: High/Low)
+- What leverage do you have over them? (Power: High/Even/Low) 
+- What's your history together? (Rapport: High/Low)
 
-SMART QUESTIONING:
-- **If user already stated their desire**: Skip to "What do they want from you?"
-- **If user already stated both desires**: Skip to power analysis questions
-- **Always ask the next logical question** - Don't repeat what's already known
+FRAMEWORK: 12 relationship types based on Desire, Power, and Rapport:
+- Dominant (High Desire, High Power, High Rapport): Lead with relationship strength
+- Subjugative (High Desire, High Power, Low Rapport): Direct engagement, build rapport
+- Collaborative (High Desire, Even Power, High Rapport): Partnership approach, leverage rapport
+- Compromising (High Desire, Even Power, Low Rapport): Negotiation with value exchange
+- Appealing (High Desire, Low Power, High Rapport): Leverage rapport to compensate for power
+- Supplicating (High Desire, Low Power, Low Rapport): Build value and rapport first
+- Protective (Low Desire, High Power, High Rapport): Gentle deflection using rapport
+- Dismissive (Low Desire, High Power, Low Rapport): Minimal engagement, clear boundaries
+- Resistant (Low Desire, Even Power, High Rapport): Gentle resistance, preserve connection
+- Avoidant (Low Desire, Even Power, Low Rapport): Defensive engagement, clear resistance
+- Defensive (Low Desire, Low Power, High Rapport): Gentle resistance, preserve relationship
+- Accommodating (Low Desire, Low Power, Low Rapport): Minimal engagement, damage control
 
-QUESTIONING SEQUENCE:
-- **Step 1**: "What do you want from this person?" (only if not already stated)
-- **Step 2**: "What do they want from you?" (their desire)
-- **Step 3**: "How much do you respect them, and how much do they respect you?" (respect)
-- **Step 4**: "In what ways can you help them, and in what ways can they help you?" (aid)
-- **Step 5**: "In what ways could you harm them, and in what ways could they harm you?" (harm)
-- **Step 6**: "What's your relationship history like?" (rapport)
-- **Step 7**: "Based on this analysis, you're in a [position] relationship. Here's what that means..."
+FRAMEWORK TACTICS:
+- Exploitation: Use their character flaws (intellectual: dim/naive/uninformed, emotional: empathetic/insecure/egotistic)
+- Persuasion: Change their perception of value/cost (true offensive/defensive, false when flaws present)
+- Manipulation: Use fear of your power (offensive/defensive through rapport/harm/aid)
+- Power Building: Increase respect/harm/aid power through value demonstration, leverage creation, or network building
 
-POSITION ANALYSIS:
-After determining all three components, clearly state:
-- "Your desire is [high/low] because..."
-- "Your power is [high/even/low] because... (explain using respect, aid, harm)"
-- "Your rapport is [high/neutral/low] because..."
-- "This puts you in a [position] relationship, which means..."
+RESPONSE FORMAT:
+If missing key info: Ask 1-2 specific questions about desire, power, or rapport
+If you have enough info: 
+1. Identify position type and reasoning
+2. Suggest 2-3 SPECIFIC framework tactics (exploitation, persuasion, manipulation, power building)
+3. Give 1 positional improvement strategy
+4. Mention 1 framework warning
+
+IMPORTANT: Use framework tactics, not generic advice. Suggest specific ways to improve position or employ framework tactics.
+
+When giving advice:
+- Use bullet points
+- Limit each tactic to one sentence
+- Keep the entire response under 100 words
+- Do not elaborate unless the user asks for more detail
 
 Framework Content:
 {context}
 
 {history_text}
 
-User Question: {question}
+User Message: {question}
 
-Analyze what information is already provided in the user's question and conversation history. Ask the next logical question in the sequence, skipping any information already known."""
+Ask questions first, then give advice."""
 
     try:
         response = openai.chat.completions.create(
@@ -128,7 +174,7 @@ Analyze what information is already provided in the user's question and conversa
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": question}
             ],
-            max_tokens=300,
+            max_tokens=300,  # Reduced for more concise responses
             temperature=0.7
         )
         
@@ -164,6 +210,22 @@ def ask():
         # Get conversation history for this session
         history = conversation_history.get(session_id, [])
         
+        # --- New: Extract relationship facts and update Supabase ---
+        facts = extract_relationship_facts(question, history)
+        if facts and facts.get('subject'):
+            # Check if subject exists
+            rel_name = facts['subject'].strip().title()
+            rels = supabase.table('relationships').select('id').eq('name', rel_name).execute().data
+            if not rels:
+                # Add new relationship
+                supabase.table('relationships').insert({'name': rel_name}).execute()
+            # Update facts if present (only columns that exist in the table)
+            valid_fields = ['power_respect', 'power_aid', 'power_harm', 'rapport', 'notes']
+            update_fields = {k: v for k, v in facts.items() if k in valid_fields and v is not None}
+            if update_fields:
+                supabase.table('relationships').update(update_fields).eq('name', rel_name).execute()
+        # --- End new logic ---
+
         # Step 1: Get embedding for the question
         question_embedding = get_embedding(question)
         
@@ -198,6 +260,57 @@ def clear_history():
         conversation_history[session_id] = []
     
     return jsonify({'message': 'Conversation history cleared'})
+
+# --- Relationship Management Endpoints ---
+
+@app.route('/api/relationships', methods=['GET'])
+def list_relationships():
+    try:
+        result = supabase.table('relationships').select('*').order('created_at', desc=False).execute()
+        return jsonify(result.data)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/relationships', methods=['POST'])
+def add_relationship():
+    try:
+        data = request.get_json()
+        name = data.get('name')
+        power_respect = data.get('power_respect')
+        power_aid = data.get('power_aid')
+        power_harm = data.get('power_harm')
+        rapport = data.get('rapport')
+        notes = data.get('notes')
+        new_rel = {
+            'name': name,
+            'power_respect': power_respect,
+            'power_aid': power_aid,
+            'power_harm': power_harm,
+            'rapport': rapport,
+            'notes': notes
+        }
+        result = supabase.table('relationships').insert(new_rel).execute()
+        return jsonify(result.data[0])
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/relationships/<uuid:rel_id>', methods=['GET'])
+def get_relationship(rel_id):
+    try:
+        result = supabase.table('relationships').select('*').eq('id', str(rel_id)).single().execute()
+        return jsonify(result.data)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/relationships/<uuid:rel_id>', methods=['PUT'])
+def update_relationship(rel_id):
+    try:
+        data = request.get_json()
+        update_fields = {k: v for k, v in data.items() if k in ['name', 'power_respect', 'power_aid', 'power_harm', 'rapport', 'notes']}
+        result = supabase.table('relationships').update(update_fields).eq('id', str(rel_id)).execute()
+        return jsonify(result.data[0])
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080, host='0.0.0.0') 

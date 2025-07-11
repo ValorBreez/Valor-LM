@@ -1,0 +1,34 @@
+{
+  "name": "valor-lm",
+  "version": "1.0.0",
+  "description": "AI-powered professional relationship strategist based on the Valor framework",
+  "main": "web_ui.js",
+  "scripts": {
+    "test": "node test_supabase.js",
+    "dev": "node slack_bot_starter.js",
+    "start": "node web_ui.js",
+    "cli": "node cli_test.js"
+  },
+  "keywords": [
+    "ai",
+    "relationships",
+    "strategy",
+    "professional",
+    "slack-bot"
+  ],
+  "author": "Valor LM Team",
+  "license": "MIT",
+  "dependencies": {
+    "@slack/bolt": "^3.17.0",
+    "@supabase/supabase-js": "^2.38.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "openai": "^4.20.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

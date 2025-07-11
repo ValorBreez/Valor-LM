@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: valor-lm
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: SUPABASE_URL
+        value: https://zvrjedjllkaulswexqjc.supabase.co
+      - key: SUPABASE_ANON_KEY
+        value: YOUR_SUPABASE_ANON_KEY_HERE
+      - key: OPENAI_API_KEY
+        value: YOUR_OPENAI_API_KEY_HERE 

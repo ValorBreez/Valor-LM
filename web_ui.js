@@ -149,7 +149,7 @@ Return ONLY the JSON object, no other text.`;
   }
 }
 
-// Helper function to generate AI advice
+// Enhanced AI advice generation with better formatting
 async function generateAIAdvice(relationshipType, context, analysis) {
   const prompt = `You are Valor LM, an AI relationship strategist. Analyze this professional relationship:
 
@@ -157,19 +157,24 @@ Relationship Type: ${relationshipType.name}
 Context: ${context}
 Analysis: ${analysis.reasoning}
 
-Provide concise, tactical advice (max 100 words) that:
-1. Acknowledges the relationship type
-2. Suggests specific tactical approaches
-3. Warns about potential pitfalls
-4. Focuses on positional improvement
+Provide structured, tactical advice in this exact format:
 
-Format as bullet points.`;
+🧠 STRATEGIC ADVICE
+[2-3 strategic insights about the relationship type]
+
+⚠️ RISKS TO WATCH
+[2-3 specific risks or pitfalls to avoid]
+
+🔧 TACTICAL SUGGESTIONS
+[3-4 specific, actionable steps to take]
+
+Keep each section concise (1-2 sentences per point). Focus on practical, actionable advice.`;
 
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-4",
       messages: [{ role: "user", content: prompt }],
-      max_tokens: 200,
+      max_tokens: 300,
       temperature: 0.7
     });
 
@@ -208,7 +213,7 @@ app.get('/', (req, res) => {
         }
         
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
             border-radius: 12px;
@@ -275,6 +280,7 @@ app.get('/', (req, res) => {
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.2s;
+            margin-right: 10px;
         }
         
         .btn:hover {
@@ -287,10 +293,34 @@ app.get('/', (req, res) => {
             transform: none;
         }
         
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
         .loading {
             text-align: center;
-            padding: 20px;
+            padding: 30px;
             color: #666;
+        }
+        
+        .loading .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         .result {
@@ -307,6 +337,26 @@ app.get('/', (req, res) => {
             font-size: 1.3rem;
         }
         
+        .relationship-type {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .relationship-type h4 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .relationship-type .type-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
         .dimensions {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -319,19 +369,20 @@ app.get('/', (req, res) => {
             padding: 15px;
             border-radius: 6px;
             border: 1px solid #e1e5e9;
+            text-align: center;
         }
         
         .dimension h4 {
             color: #667eea;
             margin-bottom: 5px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        .relationship-type {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+        .dimension p {
+            font-weight: bold;
+            font-size: 1.1rem;
         }
         
         .sections {
@@ -377,11 +428,107 @@ app.get('/', (req, res) => {
             border-left: 4px solid #17a2b8;
             padding: 20px;
             border-radius: 8px;
+            margin-bottom: 20px;
         }
         
         .ai-advice h4 {
             color: #17a2b8;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .advice-section {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+        }
+        
+        .advice-section h5 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        
+        .advice-section p {
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .feedback-section {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e1e5e9;
+        }
+        
+        .feedback-section h5 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .feedback-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .feedback-btn {
+            padding: 10px 20px;
+            border: 2px solid #e1e5e9;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        
+        .feedback-btn:hover {
+            border-color: #667eea;
+            background: #f8f9fa;
+        }
+        
+        .feedback-btn.liked {
+            border-color: #28a745;
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .feedback-btn.disliked {
+            border-color: #dc3545;
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .examples-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e1e5e9;
+        }
+        
+        .examples-section h5 {
             margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .example-btn {
+            display: inline-block;
+            margin: 5px;
+            padding: 8px 15px;
+            background: white;
+            border: 1px solid #e1e5e9;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .example-btn:hover {
+            border-color: #667eea;
+            background: #f8f9fa;
         }
         
         .hidden {
@@ -396,6 +543,15 @@ app.get('/', (req, res) => {
             border: 1px solid #f5c6cb;
             margin-top: 20px;
         }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -406,6 +562,13 @@ app.get('/', (req, res) => {
         </div>
         
         <div class="content">
+            <div class="examples-section">
+                <h5>💡 Try a sample scenario:</h5>
+                <button class="example-btn" onclick="loadExample('karen')">Karen (Finance Blocking Budget)</button>
+                <button class="example-btn" onclick="loadExample('marcus')">Marcus (Competitive Colleague)</button>
+                <button class="example-btn" onclick="loadExample('sarah')">Sarah (Mentor Relationship)</button>
+            </div>
+            
             <form id="analysisForm">
                 <div class="form-group">
                     <label for="scenario">Describe your professional relationship scenario:</label>
@@ -420,17 +583,22 @@ app.get('/', (req, res) => {
                 <button type="submit" class="btn" id="analyzeBtn">
                     🤖 Analyze Relationship
                 </button>
+                <button type="button" class="btn btn-secondary" onclick="clearForm()">
+                    🗑️ Clear
+                </button>
             </form>
             
             <div id="loading" class="loading hidden">
-                <p>🤖 Analyzing relationship dynamics...</p>
+                <div class="spinner"></div>
+                <p>🤖 Valor is analyzing your relationship dynamics...</p>
             </div>
             
             <div id="result" class="result hidden">
                 <h3>📊 Analysis Results</h3>
                 
                 <div class="relationship-type">
-                    <h4>Relationship Type: <span id="relationshipType"></span></h4>
+                    <h4>Relationship Type:</h4>
+                    <div class="type-name" id="relationshipType"></div>
                 </div>
                 
                 <div class="dimensions" id="dimensions">
@@ -455,8 +623,18 @@ app.get('/', (req, res) => {
                 </div>
                 
                 <div class="ai-advice">
-                    <h4>🤖 AI Advice</h4>
+                    <h4>🤖 AI Strategic Advice</h4>
                     <div id="aiAdvice"></div>
+                </div>
+                
+                <div class="feedback-section">
+                    <h5>Was this analysis helpful?</h5>
+                    <div class="feedback-buttons">
+                        <button class="feedback-btn" onclick="submitFeedback('helpful')">👍 Helpful</button>
+                        <button class="feedback-btn" onclick="submitFeedback('not-helpful')">👎 Not Helpful</button>
+                        <button class="feedback-btn" onclick="submitFeedback('neutral')">😐 Neutral</button>
+                    </div>
+                    <div id="feedbackMessage"></div>
                 </div>
             </div>
             
@@ -467,6 +645,61 @@ app.get('/', (req, res) => {
     </div>
 
     <script>
+        // Example scenarios
+        const examples = {
+            karen: "I'm a project manager overseeing a cross-functional team. One of the key stakeholders, Karen from the finance department, is blocking our proposal to increase marketing spend. She controls the budget and has veto power, but we don't have a close working relationship. I need her approval to move forward with our strategy.",
+            marcus: "I'm competing with Marcus for a promotion to senior manager. We're both equally qualified, but Marcus has been here longer and has better relationships with the leadership team. I need to position myself strategically while maintaining professionalism. The decision will be made in 3 months.",
+            sarah: "Sarah is my mentor and has been incredibly supportive of my career growth. She's a senior director and has significant influence in the company. I want to continue building this relationship and potentially get her support for a new role I'm interested in."
+        };
+        
+        function loadExample(type) {
+            document.getElementById('scenario').value = examples[type];
+        }
+        
+        function clearForm() {
+            document.getElementById('scenario').value = '';
+            document.getElementById('result').classList.add('hidden');
+            document.getElementById('error').classList.add('hidden');
+        }
+        
+        function submitFeedback(type) {
+            const buttons = document.querySelectorAll('.feedback-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('liked', 'disliked');
+            });
+            
+            const clickedBtn = event.target;
+            if (type === 'helpful') {
+                clickedBtn.classList.add('liked');
+            } else if (type === 'not-helpful') {
+                clickedBtn.classList.add('disliked');
+            }
+            
+            // Show success message
+            const messageDiv = document.getElementById('feedbackMessage');
+            messageDiv.innerHTML = '<div class="success-message">Thank you for your feedback! 💙</div>';
+            
+            // Save feedback to database (if available)
+            saveFeedback(type);
+        }
+        
+        async function saveFeedback(type) {
+            try {
+                await fetch('/feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        feedback: type,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+            } catch (error) {
+                console.log('Could not save feedback:', error);
+            }
+        }
+        
         document.getElementById('analysisForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -532,8 +765,10 @@ app.get('/', (req, res) => {
                         .join('');
                     document.getElementById('warnings').innerHTML = warningsHtml;
                     
-                    // Populate AI advice
-                    document.getElementById('aiAdvice').innerHTML = data.aiAdvice.replace(/\\n/g, '<br>');
+                    // Format and populate AI advice
+                    const adviceText = data.aiAdvice;
+                    const formattedAdvice = formatAdvice(adviceText);
+                    document.getElementById('aiAdvice').innerHTML = formattedAdvice;
                     
                     // Show results
                     document.getElementById('result').classList.remove('hidden');
@@ -549,6 +784,29 @@ app.get('/', (req, res) => {
                 document.getElementById('analyzeBtn').disabled = false;
             }
         });
+        
+        function formatAdvice(adviceText) {
+            // Split the advice into sections and format them
+            const sections = adviceText.split('\\n\\n');
+            let formattedHtml = '';
+            
+            sections.forEach(section => {
+                if (section.trim()) {
+                    const lines = section.split('\\n');
+                    const title = lines[0];
+                    const content = lines.slice(1).join('\\n');
+                    
+                    formattedHtml += \`
+                        <div class="advice-section">
+                            <h5>\${title}</h5>
+                            <p>\${content.replace(/\\n/g, '<br>')}</p>
+                        </div>
+                    \`;
+                }
+            });
+            
+            return formattedHtml;
+        }
     </script>
 </body>
 </html>
@@ -601,6 +859,31 @@ app.post('/analyze', async (req, res) => {
   } catch (error) {
     console.error('Analysis error:', error);
     res.status(500).json({ error: 'Analysis failed' });
+  }
+});
+
+// Add feedback endpoint
+app.post('/feedback', async (req, res) => {
+  try {
+    const { feedback, timestamp } = req.body;
+    
+    // Save feedback to Supabase if available
+    try {
+      await supabase
+        .from('feedback')
+        .insert({
+          feedback_type: feedback,
+          timestamp: timestamp,
+          user_id: 'web-ui-user'
+        });
+    } catch (error) {
+      console.log('Could not save feedback to database:', error.message);
+    }
+    
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Error saving feedback:', error);
+    res.status(500).json({ error: 'Could not save feedback' });
   }
 });
 

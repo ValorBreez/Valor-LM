@@ -104,6 +104,17 @@ CREATE TABLE analytics_events (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Create feedback table for tracking user feedback
+CREATE TABLE IF NOT EXISTS feedback (
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR(255) NOT NULL,
+    feedback_type VARCHAR(50) NOT NULL CHECK (feedback_type IN ('helpful', 'not-helpful', 'neutral')),
+    timestamp TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    scenario_id INTEGER REFERENCES scenarios(id),
+    relationship_type VARCHAR(100),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- Indexes for performance
 CREATE INDEX idx_scenarios_user_id ON scenarios(user_id);
 CREATE INDEX idx_scenarios_created_at ON scenarios(created_at);
@@ -112,6 +123,11 @@ CREATE INDEX idx_ai_responses_user_id ON ai_responses(user_id);
 CREATE INDEX idx_relationship_mappings_user_id ON relationship_mappings(user_id);
 CREATE INDEX idx_analytics_events_user_id ON analytics_events(user_id);
 CREATE INDEX idx_analytics_events_created_at ON analytics_events(created_at);
+
+-- Create index for faster feedback queries
+CREATE INDEX IF NOT EXISTS idx_feedback_user_id ON feedback(user_id);
+CREATE INDEX IF NOT EXISTS idx_feedback_type ON feedback(feedback_type);
+CREATE INDEX IF NOT EXISTS idx_feedback_timestamp ON feedback(timestamp);
 
 -- Row Level Security (RLS) policies
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;

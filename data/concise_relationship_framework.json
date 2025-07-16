@@ -1,133 +1,138 @@
 {
   "framework_metadata": {
-    "title": "Concise Relationship Management Framework",
-    "version": "2.0",
-    "description": "Streamlined framework for relationship analysis and tactics"
+    "title": "Concise Valor RM Framework",
+    "version": "3.0",
+    "description": "Simplified relationship management framework for quick analysis and guidance",
+    "total_chunks": 25
+  },
+  "quick_analysis": {
+    "rapport_assessment": {
+      "frequency": ["rare", "occasional", "often"],
+      "depth": ["shallow", "moderate", "deep"],
+      "nature": ["negative", "neutral", "positive"]
+    },
+    "desire_assessment": {
+      "value_impact": ["fulfills_goal", "reasonably_furthers_goal", "little_goal_progress", "no_goal_progress", "pushes_goal_away"],
+      "cost_perception": ["requires_more_resources_than_owned", "requires_large_amount_resources", "requires_few_resources", "requires_no_resources", "gives_back_resources"]
+    },
+    "power_assessment": {
+      "respect": ["you_important_to_them", "you_not_important_to_them", "they_important_to_you", "they_not_important_to_you"],
+      "harm": ["you_can_harm_them", "you_cannot_harm_them", "they_can_harm_you", "they_cannot_harm_you"],
+      "aid": ["you_can_aid_them", "you_cannot_aid_them", "they_can_aid_you", "they_cannot_aid_you"]
+    }
   },
   "relationship_types": {
-    "dominant": {
-      "description": "High Desire, High Power, High Rapport",
-      "approach": "Lead with relationship strength, use power judiciously",
-      "priorities": ["Lead with shared history", "Emphasize mutual benefit", "Use rapport over power"],
-      "warnings": ["Over-relying on power", "Taking relationship for granted"]
+    "golden_ally": {
+      "score": 10,
+      "description": "Near-perfect alignment, full trust, mutual interest, and influence — act boldly."
     },
-    "subjugative": {
-      "description": "High Desire, High Power, Low Rapport", 
-      "approach": "Direct engagement, build rapport during process",
-      "priorities": ["Lead with value", "Use power as backup", "Build rapport"],
-      "warnings": ["Over-reliance on power", "Underestimating resistance"]
+    "prime_partner": {
+      "score": 9,
+      "description": "Strong rapport, shared goals, and advantageous leverage — move assertively."
     },
-    "collaborative": {
-      "description": "High Desire, Even Power, High Rapport",
-      "approach": "Partnership approach, leverage rapport for win-win",
-      "priorities": ["Emphasize partnership", "Use rapport for communication", "Creative solutions"],
-      "warnings": ["Taking advantage", "Assuming agreement"]
+    "strategic_friend": {
+      "score": 8,
+      "description": "Trust and interest align well; engagement is likely to yield strong returns."
     },
-    "compromising": {
-      "description": "High Desire, Even Power, Low Rapport",
-      "approach": "Negotiation with value exchange, acknowledge past issues",
-      "priorities": ["Emphasize mutual gains", "Build rapport first", "Multiple concessions"],
-      "warnings": ["One-sided demands", "Rushing to close"]
+    "reliable_backer": {
+      "score": 7,
+      "description": "Mostly aligned and cooperative — useful for support or joint efforts."
     },
-    "appealing": {
-      "description": "High Desire, Low Power, High Rapport",
-      "approach": "Leverage rapport to compensate for power disadvantage",
-      "priorities": ["Lead with relationship", "Create opportunities", "Increase value"],
-      "warnings": ["Over-relying on rapport", "Taking relationship for granted"]
+    "favorable_contact": {
+      "score": 6,
+      "description": "Generally warm and interested — good timing for collaborative outreach."
     },
-    "supplicating": {
-      "description": "High Desire, Low Power, Low Rapport",
-      "approach": "Build value and rapport, indirect approaches",
-      "priorities": ["Build rapport and value", "Indirect influence", "Increase value"],
-      "warnings": ["Direct demands", "Appearing desperate"]
+    "open_opportunity": {
+      "score": 5,
+      "description": "Neutral-to-positive stance — positive engagement likely with right approach."
     },
-    "protective": {
-      "description": "Low Desire, High Power, High Rapport",
-      "approach": "Gentle deflection using rapport, maintain boundaries",
-      "priorities": ["Use rapport to soften", "Gentle boundaries", "Offer alternatives"],
-      "warnings": ["Damaging relationship", "Too harsh rejection"]
+    "willing_associate": {
+      "score": 4,
+      "description": "Some alignment and soft rapport — viable with modest effort."
     },
-    "dismissive": {
-      "description": "Low Desire, High Power, Low Rapport",
-      "approach": "Minimal engagement, clear boundaries, use power",
-      "priorities": ["Set clear boundaries", "Use power to deflect", "Maintain distance"],
-      "warnings": ["Getting drawn in", "Failing to use power"]
+    "cautious_ally": {
+      "score": 3,
+      "description": "Engagement is possible but requires rapport-building or value show."
     },
-    "resistant": {
-      "description": "Low Desire, Even Power, High Rapport",
-      "approach": "Gentle resistance, preserve positive connection",
-      "priorities": ["Use rapport to soften", "Resist gently", "Offer alternatives"],
-      "warnings": ["Damaging relationship", "Too harsh rejection"]
+    "mixed_potential": {
+      "score": 2,
+      "description": "Uneven footing — carefully assess intent and influence before advancing."
     },
-    "avoidant": {
-      "description": "Low Desire, Even Power, Low Rapport",
-      "approach": "Defensive engagement, clear resistance",
-      "priorities": ["Resist firmly", "Defensive tactics", "Maintain neutral"],
-      "warnings": ["Unnecessary concessions", "Failing to resist"]
+    "uncertain_ground": {
+      "score": 1,
+      "description": "Weak alignment, but no hostility — possible to influence with caution."
     },
-    "defensive": {
-      "description": "Low Desire, Low Power, High Rapport",
-      "approach": "Gentle resistance, preserve relationship",
-      "priorities": ["Use rapport to soften", "Indirect resistance", "Offer alternatives"],
-      "warnings": ["Damaging relationship", "Too harsh rejection"]
+    "neutral_zone": {
+      "score": 0,
+      "description": "Neither for nor against — engagement impact will depend on context."
     },
-    "accommodating": {
-      "description": "Low Desire, Low Power, Low Rapport",
-      "approach": "Minimal engagement, strategic resistance, damage control",
-      "priorities": ["Indirect resistance", "Minimize engagement", "Build power"],
-      "warnings": ["Unnecessary concessions", "Failing to resist"]
+    "disinterested": {
+      "score": -1,
+      "description": "Low engagement energy — indifferent or unmotivated relationship."
+    },
+    "cool_distance": {
+      "score": -2,
+      "description": "Little warmth or alignment — minimal engagement return expected."
+    },
+    "soft_resistance": {
+      "score": -3,
+      "description": "Subtle friction or low buy-in — may slow or block progress passively."
+    },
+    "guarded_adversary": {
+      "score": -4,
+      "description": "Resistant and skeptical — likely to resist influence or oppose softly."
+    },
+    "opposed_actor": {
+      "score": -5,
+      "description": "Active disinterest or mild hostility — engagement is risky."
+    },
+    "tactical_threat": {
+      "score": -6,
+      "description": "Opposes your intent with some leverage — may need containment."
+    },
+    "strategic_obstacle": {
+      "score": -7,
+      "description": "Likely to undermine or block your efforts — manage or isolate."
+    },
+    "influential_enemy": {
+      "score": -8,
+      "description": "Active, resourced opposition — avoid engagement or disarm diplomatically."
+    },
+    "hostile_force": {
+      "score": -9,
+      "description": "High risk, high resistance — engagement invites harm or sabotage."
+    },
+    "total_adversary": {
+      "score": -10,
+      "description": "Complete misalignment — hostile, powerful, and oppositional. Avoid."
     }
   },
-  "analysis_components": {
-    "desire": {
-      "high": "You want something from them",
-      "low": "You want nothing from them"
-    },
-    "power": {
-      "high": "You have significant leverage over them",
-      "even": "You have equal standing with them", 
-      "low": "You have little leverage over them"
-    },
-    "rapport": {
-      "high": "You have strong positive history together",
-      "low": "You have negative or minimal history together"
-    }
-  },
-  "tactics": {
-    "exploitation": {
-      "intellectual": {
-        "dim": "Complicate arguments, use technical jargon",
-        "naive": "Introduce unknown negative consequences",
-        "uninformed": "Make claims they can't refute"
-      },
-      "emotional": {
-        "empathetic": "Make them feel bad for not helping",
-        "insecure": "Suggest inadequacy",
-        "egotistic": "Suggest your position glorifies them"
-      }
-    },
-    "persuasion": {
-      "true_offensive": "Talk them into seeing your request as beneficial",
-      "true_defensive": "Talk them into seeing their request as costly",
-      "false": "Only when character flaws present, gives them power"
-    },
-    "manipulation": {
-      "offensive": "Use fear to make your request desirable",
-      "defensive": "Use fear to make their request undesirable"
-    }
-  },
-  "engagement_structures": {
+  "engagement_strategies": {
     "offensive": {
-      "phases": ["Greeting/Orientation", "Pitch/Resistance/Counter", "Close/Soothing"],
-      "tactics": ["Lead with value", "Listen completely", "Employ counter-tactics"]
+      "description": "You want something, they don't",
+      "approach": "Lead with value, build rapport, use persuasion over manipulation"
     },
     "defensive": {
-      "phases": ["Reject Greeting", "Receive/Deliver Resistance", "Obfuscate Close"],
-      "tactics": ["Don't allow positive atmosphere", "Resist firmly", "End prematurely if needed"]
+      "description": "They want something, you don't",
+      "approach": "Resist firmly, maintain boundaries, avoid unnecessary concessions"
     },
     "competitive": {
-      "phases": ["Greeting/Orientation", "Pitch/Counter-Offer/Counter", "Close/Soothing"],
-      "tactics": ["Emphasize mutual gains", "Listen to counter-offers", "Reach agreement"]
+      "description": "Both parties want something from each other",
+      "approach": "Negotiate for mutual benefit, find creative solutions"
+    }
+  },
+  "tactical_guidance": {
+    "persuasion": {
+      "offensive": "Convince them your request benefits their goals",
+      "defensive": "Convince them their request harms their goals"
+    },
+    "manipulation": {
+      "offensive": "Use power to make your request more desirable",
+      "defensive": "Use power to make their request less desirable"
+    },
+    "exploitation": {
+      "intellectual": "Use their lack of knowledge or understanding",
+      "emotional": "Use their emotional vulnerabilities"
     }
   }
 } 

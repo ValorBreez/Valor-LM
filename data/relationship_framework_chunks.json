@@ -1,235 +1,185 @@
-[
-  {
-    "id": 1,
-    "step_number": 1,
-    "step_name": "Understand Relationships",
-    "sub_step": "1.1",
-    "sub_step_name": "What is a Relationship?",
-    "text": "A relationship is a running series of engagements between two parties. Even if no engagements have occurred, as long as you are aware of the other party, a relationship can be calculated. An engagement is defined as a direct interaction between two parties where some form of communication is exchanged.",
-    "category": "foundation",
-    "engagement_types": ["offensive", "defensive", "competitive", "null"]
+{
+  "framework_metadata": {
+    "title": "Valor RM Report Chunks",
+    "version": "3.0",
+    "description": "Chunked relationship management framework for detailed analysis and guidance",
+    "total_chunks": 50
   },
-  {
-    "id": 2,
-    "step_number": 1,
-    "step_name": "Understand Relationships",
-    "sub_step": "1.2",
-    "sub_step_name": "Components of a Relationship",
-    "text": "The three components of a relationship are Desire, Power, and Rapport. Desire is the amount one party wishes to engage with the other, based on the party's goal. High Desire means one party wants something from the other, while Low Desire means one party wants nothing from the other.",
-    "category": "components",
-    "components": ["desire", "power", "rapport"]
-  },
-  {
-    "id": 3,
-    "step_number": 1,
-    "step_name": "Understand Relationships",
-    "sub_step": "1.2.1",
-    "sub_step_name": "Relative Power",
-    "text": "Relative Power is the capacity of one party to exert its will on the other, based on Respect, Harm, and Aid. Overall Relative Power is zero-sum - high power in one area is nullified by low power in another. Respect is the power from having high standing in the other party's eyes.",
-    "category": "power_analysis",
-    "power_components": ["respect", "harm", "aid"]
-  },
-  {
-    "id": 4,
-    "step_number": 1,
-    "step_name": "Understand Relationships",
-    "sub_step": "1.2.2",
-    "sub_step_name": "Rapport",
-    "text": "Rapport is the ease with which one party can engage the other based on their history of engagements. High rapport means you've had many positive engagements, neutral means few interactions or many mixed interactions, and low rapport means many negative engagements.",
-    "category": "rapport",
-    "rapport_levels": ["high", "neutral", "low"]
-  },
-  {
-    "id": 5,
-    "step_number": 1,
-    "step_name": "Understand Relationships",
-    "sub_step": "1.3",
-    "sub_step_name": "Types of Relationships",
-    "text": "From the analyzer's perspective, there are six types of relationships: Subjugative (High Desire, High Power), Compromising (High Desire, Even Power), Supplicating (High Desire, Low Power), Dismissive (Low Desire, High Power), Avoidant (Low Desire, Even Power), Accommodating (Low Desire, Low Power), and Collaborative (High Desire, High Rapport).",
-    "category": "relationship_types",
-    "relationship_types": ["subjugative", "compromising", "supplicating", "dismissive", "avoidant", "accommodating", "collaborative"]
-  },
-  {
-    "id": 6,
-    "step_number": 2,
-    "step_name": "Analyze for Engagement",
-    "sub_step": "2.1",
-    "sub_step_name": "What is Analyzing for Engagement?",
-    "text": "Analyzing for engagement means gaining an understanding of the other party's position so that you can optimize your position before engaging. This involves analyzing Engagement Desire, Relative Power, Rapport, and Character Vulnerabilities.",
-    "category": "analysis_foundation",
-    "analysis_components": ["engagement_desire", "relative_power", "rapport", "character_vulnerabilities"]
-  },
-  {
-    "id": 7,
-    "step_number": 2,
-    "step_name": "Analyze for Engagement",
-    "sub_step": "2.2",
-    "sub_step_name": "Engagement Desire Analysis",
-    "text": "Engagement Desire is assessing the mental decision one comes to about a prospective request based on the request's effect on their goals and resources. This differs from overall Relationship desire - one could have high relationship desire but low engagement desire for a specific unfavorable request.",
-    "category": "desire_analysis",
-    "desire_components": ["value", "resources"]
-  },
-  {
-    "id": 8,
-    "step_number": 2,
-    "step_name": "Analyze for Engagement",
-    "sub_step": "2.2.1",
-    "sub_step_name": "Components of Desire",
-    "text": "The components of desire are Value (how a request affects their relevant goal) and Resources (what one has to accomplish their goal with). Goals can be to acquire something, maintain something, or dispose of something. Resources can be tangible (money) or intangible (time).",
-    "category": "desire_components",
-    "goal_types": ["acquire", "maintain", "dispose"],
-    "resource_types": ["tangible", "intangible"]
-  },
-  {
-    "id": 9,
-    "step_number": 2,
-    "step_name": "Analyze for Engagement",
-    "sub_step": "2.2.2",
-    "sub_step_name": "Engagement Desire Matrix",
-    "text": "The Engagement Desire Matrix uses scores from 3 (high) to -1 (negative) for both Value and Cost. Cost is subtracted from Value to give the Desire level between 4 (Desperate for) and -4 (Desperate to avoid). Value scores: 3=High (will satisfy goal), 2=Medium (will reasonably further goal), 1=Low (will slightly further goal), 0=None (will not further goal), -1=Negative (will detract from goal).",
-    "category": "desire_matrix",
-    "value_scores": [3, 2, 1, 0, -1],
-    "desire_range": [4, -4]
-  },
-  {
-    "id": 10,
-    "step_number": 2,
-    "step_name": "Analyze for Engagement",
-    "sub_step": "2.3",
-    "sub_step_name": "Relative Power Analysis",
-    "text": "Relative Power Analysis examines three components: Respect (power from having high standing), Harm (power to negatively affect the other party's goals or resources), and Aid (power to positively affect the other party's goals or resources). Each can be High, Even, or Low relative to the other party.",
-    "category": "power_analysis",
-    "power_components": ["respect", "harm", "aid"],
-    "power_levels": ["high", "even", "low"]
-  },
-  {
-    "id": 11,
-    "step_number": 2,
-    "step_name": "Analyze for Engagement",
-    "sub_step": "2.4",
-    "sub_step_name": "Rapport Analysis",
-    "text": "Rapport Analysis examines three components: Number of engagements (how many times you've directly communicated), Nature of engagements (positive, neutral, or negative), and Comfort level of engagements (shallow, moderate, or deep). Deep engagements involve personal and private communications about identity and mission.",
-    "category": "rapport_analysis",
-    "rapport_components": ["number", "nature", "comfort_level"],
-    "comfort_levels": ["shallow", "moderate", "deep"]
-  },
-  {
-    "id": 12,
-    "step_number": 2,
-    "step_name": "Analyze for Engagement",
-    "sub_step": "2.5",
-    "sub_step_name": "Character Vulnerability Analysis",
-    "text": "Character Vulnerability Analysis identifies traits of the other party that allow you to alter their perception of Value and Cost. Types include Intellectual vulnerabilities (dim, naive, uninformed) and Emotional vulnerabilities (empathetic, insecurity, egotistic). These can be exploited during engagement.",
-    "category": "vulnerability_analysis",
-    "vulnerability_types": ["intellectual", "emotional"],
-    "intellectual_vulnerabilities": ["dim", "naive", "uninformed"],
-    "emotional_vulnerabilities": ["empathetic", "insecurity", "egotistic"]
-  },
-  {
-    "id": 13,
-    "step_number": 3,
-    "step_name": "Prepare for Engagement",
-    "sub_step": "3.1",
-    "sub_step_name": "Improve Your Assessed Position",
-    "text": "Long-term adjustments to improve your position include increasing Relative Power through Respect, Harm, and Aid. For low or even power: build rapport to increase your importance, gain means to harm/benefit them, or neutralize their means. For high power: maintain your sources and resist their attempts.",
-    "category": "preparation",
-    "adjustment_types": ["increase_power", "build_rapport", "create_distance"]
-  },
-  {
-    "id": 14,
-    "step_number": 3,
-    "step_name": "Prepare for Engagement",
-    "sub_step": "3.2",
-    "sub_step_name": "Ready Engagement Tactics",
-    "text": "Engagement Tactics are techniques used during engagement to adjust the other party's desire. These include Exploitation (using character flaws), Persuasion (constructing arguments to change perception), and Manipulation (provoking fear of your power). Each can be used offensively or defensively.",
-    "category": "tactics",
-    "tactic_types": ["exploitation", "persuasion", "manipulation"],
-    "engagement_types": ["offensive", "defensive"]
-  },
-  {
-    "id": 15,
-    "step_number": 3,
-    "step_name": "Prepare for Engagement",
-    "sub_step": "3.2.1",
-    "sub_step_name": "Exploitation",
-    "text": "Exploitation uses the other party's character flaws to change their desire level. Intellectual exploitation targets vulnerability to deceit: for dim people, complicate arguments; for naive people, introduce unknown negative consequences; for uninformed people, make claims they can't refute. Emotional exploitation targets vulnerability to baiting: for empathetic people, make them feel bad; for insecure people, suggest inadequacy; for egotistic people, suggest your position glorifies them.",
-    "category": "exploitation",
-    "exploitation_types": ["intellectual", "emotional"]
-  },
-  {
-    "id": 16,
-    "step_number": 3,
-    "step_name": "Prepare for Engagement",
-    "sub_step": "3.2.2",
-    "sub_step_name": "Persuasion",
-    "text": "Persuasion constructs arguments to change how the other party perceives the effect to their goals and resources. True Offensive Persuasion talks them into seeing your request as more beneficial and requiring fewer resources. True Defensive Persuasion talks them into seeing their request as less helpful and more costly. False persuasion (begging/pleading) is only available when certain character flaws are present and immediately gives them power over you.",
-    "category": "persuasion",
-    "persuasion_types": ["true_offensive", "false_offensive", "true_defensive", "false_defensive"]
-  },
-  {
-    "id": 17,
-    "step_number": 3,
-    "step_name": "Prepare for Engagement",
-    "sub_step": "3.2.3",
-    "sub_step_name": "Manipulation",
-    "text": "Manipulation constructs arguments to alter desire by provoking fear of your power. Offensive Manipulation uses fear to make your request more desirable; Defensive Manipulation uses fear to make their request less desirable. This can be done through Rapport (losing standing), Harm (hurting their goals), or Aid (not furthering their goals). Aid power threatens to take away existing help rather than offering quid pro quo.",
-    "category": "manipulation",
-    "manipulation_types": ["offensive", "defensive"],
-    "power_sources": ["rapport", "harm", "aid"]
-  },
-  {
-    "id": 18,
-    "step_number": 4,
-    "step_name": "Engage",
-    "sub_step": "4.1",
-    "sub_step_name": "Engagement Structures",
-    "text": "Engagement structures vary by type: Offensive (you want something, they want nothing), Competitive (you both want something), and Defensive (they want something, you want nothing). Each has distinct Opening, Middle Game, and End Game phases with specific tactics for each phase.",
-    "category": "engagement_structures",
-    "structure_types": ["offensive", "competitive", "defensive"],
-    "phases": ["opening", "middle_game", "end_game"]
-  },
-  {
-    "id": 19,
-    "step_number": 4,
-    "step_name": "Engage",
-    "sub_step": "4.1.1",
-    "sub_step_name": "Offensive Engagement Structure",
-    "text": "Offensive engagement structure: Opening includes Greeting (deliver formalities) and Orientation (present situation without pitching). Middle Game includes Pitch Softener (acknowledge resistance points), Pitch (deliver request), Receive Resistance (listen completely), Counter-Resistance Tactics (employ exploitation/manipulation/persuasion), and Post-Tactic Check-up (gauge desire level). End Game includes Close (obtain concurrence) and Post-Close Soothing (thanks and encouragement).",
-    "category": "offensive_structure",
-    "opening_components": ["greeting", "orientation"],
-    "middle_game_components": ["pitch_softener", "pitch", "receive_resistance", "counter_tactics", "check_up"],
-    "end_game_components": ["close", "soothing"]
-  },
-  {
-    "id": 20,
-    "step_number": 4,
-    "step_name": "Engage",
-    "sub_step": "4.1.2",
-    "sub_step_name": "Competitive Engagement Structure",
-    "text": "Competitive engagement structure: Opening includes Greeting and Orientation. Middle Game includes Pitch Softener (acknowledge their goal with minimal concession), Pitch (deliver maximum pitch), Resist Pre-Counter-Offer Tactics, Receive Counter-Offer (listen completely), Counter Counter-Offer Tactics, and Post-Tactic Check-up. End Game includes Close and Post-Close Soothing.",
-    "category": "competitive_structure",
-    "middle_game_components": ["pitch_softener", "pitch", "resist_tactics", "receive_counter", "counter_tactics", "check_up"]
-  },
-  {
-    "id": 21,
-    "step_number": 4,
-    "step_name": "Engage",
-    "sub_step": "4.1.3",
-    "sub_step_name": "Defensive Engagement Structure",
-    "text": "Defensive engagement structure: Opening includes Reject Greeting (don't allow positive atmosphere) and Obfuscate Orientation (reject their framing). Middle Game includes Hyperbolize Pitch Softener (over-concur with resistance points), Receive Pitch (they lose steam), Deliver Resistance (employ tactics), and Reject Count-Resistance Tactics (refute their counters). End Game includes Obfuscate Close (resist concurrence) and Disengage (end prematurely).",
-    "category": "defensive_structure",
-    "opening_components": ["reject_greeting", "obfuscate_orientation"],
-    "middle_game_components": ["hyperbolize_softener", "receive_pitch", "deliver_resistance", "reject_tactics"],
-    "end_game_components": ["obfuscate_close", "disengage"]
-  },
-  {
-    "id": 22,
-    "step_number": 4,
-    "step_name": "Engage",
-    "sub_step": "4.2",
-    "sub_step_name": "Who Wins an Engagement?",
-    "text": "The winner of an engagement is determined by: who better understood the relationship, who more accurately analyzed the situation, who was more prepared before the engagement, who employed better tactics during the engagement, and who better adhered to the strategy. Success depends on comprehensive preparation and execution.",
-    "category": "engagement_success",
-    "success_factors": ["understanding", "analysis", "preparation", "tactics", "strategy_adherence"]
-  }
-] 
+  "chunks": [
+    {
+      "id": 1,
+      "title": "Executive Summary",
+      "content": "The executive summary provides a comprehensive overview of the engagement objective, classification, key dynamics, and strategic recommendations. It includes the engagement objective (client's primary goal), engagement classification (status, type, threat level), key dynamics (relative power, harm, aid, perceived cost/value, rapport depth, nature of interactions), engagement shift goal (target state and classification), and strategic recommendations with priority moves.",
+      "category": "overview",
+      "tags": ["executive_summary", "engagement_objective", "strategic_recommendations"]
+    },
+    {
+      "id": 2,
+      "title": "Rapport Analysis",
+      "content": "Rapport analysis examines the relationship history through frequency, depth, and nature of interactions. Frequency analysis covers how often parties interact over time. Depth analysis uses the Levels of Self model to assess interaction depth (shallow, moderate, deep). Nature analysis characterizes the general impression left after interactions (positive, neutral, negative). The summary explains the overall rapport assessment and its implications for engagement strategy.",
+      "category": "analysis",
+      "tags": ["rapport", "frequency", "depth", "nature", "relationship_history"]
+    },
+    {
+      "id": 3,
+      "title": "Desire Analysis",
+      "content": "Desire analysis assesses the target's willingness to engage based on their goals and how they perceive the client's proposition. Goal analysis identifies the target's relevant objectives and their impact. Cost analysis evaluates how the target perceives the resource requirements of the client's proposal. Value analysis assesses how the target perceives the proposal's ability to advance their goals. The summary provides the overall desire assessment and strategic implications.",
+      "category": "analysis",
+      "tags": ["desire", "goals", "cost", "value", "engagement_willingness"]
+    },
+    {
+      "id": 4,
+      "title": "Relative Power Analysis",
+      "content": "Relative power analysis examines the balance of influence between parties through respect, harm, and aid components. Respect analysis identifies sources of standing and importance. Harm analysis identifies potential sources of damage to the other party's interests. Aid analysis identifies potential sources of help to the other party's interests. The summary provides the overall power balance assessment and strategic implications.",
+      "category": "analysis",
+      "tags": ["power", "respect", "harm", "aid", "influence_balance"]
+    },
+    {
+      "id": 5,
+      "title": "Vulnerability Analysis",
+      "content": "Vulnerability analysis identifies character traits that can be exploited during engagement. Generic vulnerability analysis identifies standard exploitable characteristics. Unique vulnerability analysis identifies specific exploitable traits of the target. The summary provides the overall vulnerability assessment and exploitation strategy recommendations.",
+      "category": "analysis",
+      "tags": ["vulnerability", "exploitation", "character_traits", "manipulation"]
+    },
+    {
+      "id": 6,
+      "title": "Rapport Improvement",
+      "content": "Rapport improvement strategies focus on enhancing the relationship quality through frequency, depth, and nature improvements. Frequency improvement identifies steps to increase interaction frequency. Depth improvement identifies steps to increase interaction depth. Nature improvement identifies messaging to promote positive interactions and avoid negative ones. The summary provides the overall rapport enhancement strategy.",
+      "category": "improvement",
+      "tags": ["rapport_improvement", "frequency", "depth", "nature", "relationship_enhancement"]
+    },
+    {
+      "id": 7,
+      "title": "Desire Improvement",
+      "content": "Desire improvement strategies focus on enhancing the target's willingness to engage through cost and value improvements. Cost improvement identifies steps to reduce the target's perceived cost of the proposal. Value improvement identifies steps to increase the target's perceived value of the proposal. The summary provides the overall desire enhancement strategy.",
+      "category": "improvement",
+      "tags": ["desire_improvement", "cost", "value", "engagement_willingness"]
+    },
+    {
+      "id": 8,
+      "title": "Relative Power Improvement",
+      "content": "Relative power improvement strategies focus on enhancing the client's influence through respect, harm, and aid improvements. Respect improvement identifies steps to increase the client's standing with the target. Harm improvement identifies steps to increase the client's ability to harm the target's interests. Aid improvement identifies steps to increase the client's ability to help the target's interests. The summary provides the overall power enhancement strategy.",
+      "category": "improvement",
+      "tags": ["power_improvement", "respect", "harm", "aid", "influence_enhancement"]
+    },
+    {
+      "id": 9,
+      "title": "Exploitation Preparation",
+      "content": "Exploitation preparation involves developing strategies to use identified vulnerabilities during engagement. Generic preparation develops strategies for standard vulnerabilities. Unique preparation develops strategies for specific target vulnerabilities. The summary provides the overall exploitation strategy and tactical guidance.",
+      "category": "preparation",
+      "tags": ["exploitation", "vulnerability", "manipulation", "tactical_preparation"]
+    },
+    {
+      "id": 10,
+      "title": "Engagement Strategy - Opening",
+      "content": "The opening phase sets the tone for the engagement through greeting and orientation. Greeting establishes the appropriate level of formality and small-talk subjects based on rapport level. Orientation presents the proposal as a solution to the target's goals without making the actual pitch, including recent improvements the target may not be aware of.",
+      "category": "strategy",
+      "tags": ["opening", "greeting", "orientation", "engagement_phase"]
+    },
+    {
+      "id": 11,
+      "title": "Engagement Strategy - Middle Game",
+      "content": "The middle game phase involves the core engagement through pitch softener, pitch delivery, resistance handling, and tactical employment. Pitch softener anticipates and defuses potential resistance points. Pitch delivery provides the verbatim script for presenting the proposal. Receive resistance involves listening completely to all resistance points. Count-resistance tactics employ persuasion, manipulation, or exploitation as needed. Post-tactic checkup gauges desire level after tactics.",
+      "category": "strategy",
+      "tags": ["middle_game", "pitch", "resistance", "tactics", "engagement_phase"]
+    },
+    {
+      "id": 12,
+      "title": "Engagement Strategy - Closing",
+      "content": "The closing phase finalizes the engagement through close and post-close soothing. Close involves obtaining concurrence on the request and delivering any needed information. Post-close soothing provides appropriate thanks and encouragement to make the target feel good about their decision.",
+      "category": "strategy",
+      "tags": ["closing", "close", "soothing", "engagement_phase"]
+    },
+    {
+      "id": 13,
+      "title": "Scoring Systems - Rapport",
+      "content": "Rapport scoring uses three components: frequency (rare=-1, occasional=0, often=1), depth (shallow=-1, moderate=0, deep=1), and nature (negative=-1, neutral=0, positive=1). These scores are combined to assess overall rapport quality and determine relationship classification.",
+      "category": "scoring",
+      "tags": ["rapport_scoring", "frequency", "depth", "nature", "scoring_system"]
+    },
+    {
+      "id": 14,
+      "title": "Scoring Systems - Desire",
+      "content": "Desire scoring uses value and cost components. Value scores: fulfills goal=3, reasonably furthers goal=2, little goal progress=1, no goal progress=0, pushes goal away=-1. Cost scores: requires more resources than owned=3, requires large amount resources=2, requires few resources=1, requires no resources=0, gives back resources=-1. Desire equals value minus cost.",
+      "category": "scoring",
+      "tags": ["desire_scoring", "value", "cost", "scoring_system"]
+    },
+    {
+      "id": 15,
+      "title": "Scoring Systems - Relative Power",
+      "content": "Relative power scoring uses respect, harm, and aid components. Respect: you important to them=1, you not important to them=0, they important to you=-1, they not important to you=0. Harm: you can harm them=1, you cannot harm them=0, they can harm you=-1, they cannot harm you=0. Aid: you can aid them=1, you cannot aid them=0, they can aid you=-1, they cannot aid you=0.",
+      "category": "scoring",
+      "tags": ["power_scoring", "respect", "harm", "aid", "scoring_system"]
+    },
+    {
+      "id": 16,
+      "title": "Relationship Classification",
+      "content": "Relationship classification uses a scoring system from 10 (Golden Ally) to -10 (Total Adversary). Golden Ally (10): Near-perfect alignment, full trust, mutual interest, and influence — act boldly. Prime Partner (9): Strong rapport, shared goals, and advantageous leverage — move assertively. Strategic Friend (8): Trust and interest align well; engagement is likely to yield strong returns. Reliable Backer (7): Mostly aligned and cooperative — useful for support or joint efforts.",
+      "category": "classification",
+      "tags": ["relationship_classification", "scoring", "relationship_types", "strategic_guidance"]
+    },
+    {
+      "id": 17,
+      "title": "Relationship Types - Positive",
+      "content": "Positive relationship types include Favorable Contact (6): Generally warm and interested — good timing for collaborative outreach. Open Opportunity (5): Neutral-to-positive stance — positive engagement likely with right approach. Willing Associate (4): Some alignment and soft rapport — viable with modest effort. Cautious Ally (3): Engagement is possible but requires rapport-building or value show.",
+      "category": "classification",
+      "tags": ["positive_relationships", "relationship_types", "engagement_strategy"]
+    },
+    {
+      "id": 18,
+      "title": "Relationship Types - Neutral",
+      "content": "Neutral relationship types include Mixed Potential (2): Uneven footing — carefully assess intent and influence before advancing. Uncertain Ground (1): Weak alignment, but no hostility — possible to influence with caution. Neutral Zone (0): Neither for nor against — engagement impact will depend on context. Disinterested (-1): Low engagement energy — indifferent or unmotivated relationship.",
+      "category": "classification",
+      "tags": ["neutral_relationships", "relationship_types", "engagement_strategy"]
+    },
+    {
+      "id": 19,
+      "title": "Relationship Types - Negative",
+      "content": "Negative relationship types include Cool Distance (-2): Little warmth or alignment — minimal engagement return expected. Soft Resistance (-3): Subtle friction or low buy-in — may slow or block progress passively. Guarded Adversary (-4): Resistant and skeptical — likely to resist influence or oppose softly. Opposed Actor (-5): Active disinterest or mild hostility — engagement is risky.",
+      "category": "classification",
+      "tags": ["negative_relationships", "relationship_types", "engagement_strategy"]
+    },
+    {
+      "id": 20,
+      "title": "Relationship Types - Hostile",
+      "content": "Hostile relationship types include Tactical Threat (-6): Opposes your intent with some leverage — may need containment. Strategic Obstacle (-7): Likely to undermine or block your efforts — manage or isolate. Influential Enemy (-8): Active, resourced opposition — avoid engagement or disarm diplomatically. Hostile Force (-9): High risk, high resistance — engagement invites harm or sabotage. Total Adversary (-10): Complete misalignment — hostile, powerful, and oppositional. Avoid.",
+      "category": "classification",
+      "tags": ["hostile_relationships", "relationship_types", "engagement_strategy"]
+    },
+    {
+      "id": 21,
+      "title": "Tactical Frameworks - Persuasion",
+      "content": "Persuasion frameworks include offensive persuasion: goal (convince them your request will further their goals), cost (convince them your request will not cost them as much as they believe), confused (convince them they should desire your request). Defensive persuasion: goal (convince them their request will be detrimental to their goals), cost (convince them their request will cost them much more than they thought), confused (convince them they should not desire their request).",
+      "category": "tactics",
+      "tags": ["persuasion", "offensive", "defensive", "tactical_frameworks"]
+    },
+    {
+      "id": 22,
+      "title": "Tactical Frameworks - Manipulation",
+      "content": "Manipulation frameworks include offensive manipulation: high respect (show how they would lose standing with you for refusing), high harm (show how you could damage their goals if they refuse), high aid (show how you could benefit their goals if they accept). Defensive manipulation: high respect (show how they would lose standing with you for pursuing), high harm (show how you could damage their goals if they pursue), high aid (show how you could benefit their goals if they drop).",
+      "category": "tactics",
+      "tags": ["manipulation", "offensive", "defensive", "tactical_frameworks"]
+    },
+    {
+      "id": 23,
+      "title": "Engagement Types",
+      "content": "Engagement types include offensive (you want something, they don't): lead with value, build rapport, use persuasion over manipulation. Defensive (they want something, you don't): resist firmly, maintain boundaries, avoid unnecessary concessions. Competitive (both parties want something from each other): negotiate for mutual benefit, find creative solutions.",
+      "category": "strategy",
+      "tags": ["engagement_types", "offensive", "defensive", "competitive", "strategic_approach"]
+    },
+    {
+      "id": 24,
+      "title": "Tactical Guidance",
+      "content": "Tactical guidance includes persuasion: offensive (convince them your request benefits their goals), defensive (convince them their request harms their goals). Manipulation: offensive (use power to make your request more desirable), defensive (use power to make their request less desirable). Exploitation: intellectual (use their lack of knowledge or understanding), emotional (use their emotional vulnerabilities).",
+      "category": "tactics",
+      "tags": ["tactical_guidance", "persuasion", "manipulation", "exploitation"]
+    },
+    {
+      "id": 25,
+      "title": "Report Structure Overview",
+      "content": "The Valor RM Report structure includes executive summary (engagement objective, classification, key dynamics, strategic recommendations), analysis sections (rapport, desire, relative power, vulnerability), improvement sections (rapport, desire, relative power), exploitation preparation, and engagement strategy (opening, middle game, closing). Each section provides detailed analysis and strategic guidance for relationship management.",
+      "category": "overview",
+      "tags": ["report_structure", "analysis_sections", "improvement_sections", "engagement_strategy"]
+    }
+  ]
+} 

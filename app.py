@@ -61,8 +61,9 @@ def extract_relationship_facts(user_message, conversation_history=None):
         "For each message, return a JSON object with: "
         "'subject' (the person/role the user is talking about, e.g. 'boss', 'neighbor'), "
         "and any facts you can infer: 'power_respect', 'power_aid', 'power_harm', 'rapport', 'notes'. "
-        "Use values like 'high', 'even', 'low' for power fields and 'high', 'neutral', 'low' for rapport. "
-        "If a fact is not present, omit it. Be conversationally aware: infer facts from context, not just direct statements. "
+        "Use values like 'high', 'even', 'low' for power fields. "
+        "For rapport, use: 'low' (cold, hostile, dismissive, adversarial), 'neutral' (professional, respectful, distant, indifferent), 'high' (friendly, warm, trusting, personal). "
+        "For offensive engagements (user is the initiator and wants something), ONLY the target's level of desire is relevant for 'desire' (ignore the user's desire). "
         "If the subject is not clear, return null for subject."
     )
     messages = [
@@ -121,9 +122,9 @@ When you have enough information, structure your response as:
 Score: [X/10] (if applicable)
 
 **KEY DYNAMICS**
-• Desire: [High/Medium/Low] - [Brief reasoning]
-• Power: [High/Even/Low] - [Brief reasoning] 
-• Rapport: [High/Medium/Low] - [Brief reasoning]
+• Desire: [High/Medium/Low] - [Brief reasoning; for offensive engagements, use only the target's level of interest]
+• Power: [High/Even/Low] - [Brief reasoning]
+• Rapport: [High/Neutral/Low] - [Low = cold/hostile/dismissive/adversarial, Neutral = professional/respectful/distant/indifferent, High = friendly/warm/trusting/personal]
 
 **STRATEGIC RECOMMENDATIONS**
 1. [Primary tactical approach]
@@ -136,7 +137,11 @@ Score: [X/10] (if applicable)
 • Closing: [How to conclude]
 
 **WARNING SIGNS**
-• [Key risk or pitfall to avoid]
+• [If rapport is neutral and desire is medium, warn about fadeout or losing to a competitor. Only show conflict/confrontation warnings if input indicates hostility.]
+
+FRAMEWORK GUIDANCE:
+- For Medium Desire (target), Even Power, Neutral Rapport, classify as 'The Negotiation' or similar.
+- Tactical priorities for this profile: build alignment, seek internal champion support, present strategic value and differentiation from competitors.
 
 FRAMEWORK CONTENT:
 {context}
